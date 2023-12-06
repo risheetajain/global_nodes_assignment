@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "960652309683",
+    "project_id": "global-nodes-assignment",
+    "storage_bucket": "global-nodes-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960652309683:android:07ec5089db2c87edc3ecc6",
+        "android_client_info": {
+          "package_name": "com.flutterwings.global_nodes_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4EvowdackoJJL7Lv0C49vri8USNsctkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
