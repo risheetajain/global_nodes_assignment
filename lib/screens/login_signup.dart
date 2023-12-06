@@ -4,8 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
 import 'package:string_validator/string_validator.dart';
 
-import '../api/firebase_api.dart';
-import '../api/shared_preferences.dart';
+import '../apis/firebase_auth_api.dart';
+import '../apis/shared_preferences.dart';
 import '../constants/decoration.dart';
 import '../routes/routes_constant.dart';
 
