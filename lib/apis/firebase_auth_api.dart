@@ -38,4 +38,12 @@ class FirebaseAuthenication {
         ? loginWithEmailAndPassword(email: email, password: password)
         : signUpWithEmailAndPassword(email: email, password: password);
   }
+
+  static User getCurrentUser() {
+    return firebaseAuth.currentUser!;
+  }
+
+  static void logout() {
+    firebaseAuth.signOut();
+  }
 }

@@ -14,10 +14,10 @@ class TodoModel {
 
   TodoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    taskName = json['task_name'];
-    taskDescription = json['task_description'];
+    taskName = json['taskName'];
+    taskDescription = json['taskDescription'];
     status = json['status'];
-    currentDate = json['current_date'];
+    currentDate = json['currentDate'];
   }
 
   Map<String, dynamic> toJson() {

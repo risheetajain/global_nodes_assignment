@@ -10,6 +10,10 @@ class SharedPref {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(loginStatus) ?? false;
   }
+  static clearData() async {
+       final prefs = await SharedPreferences.getInstance();
+       prefs.clear();
+  }
 }
 
 String loginStatus = "loginStatus";

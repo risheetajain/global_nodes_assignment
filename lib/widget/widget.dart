@@ -10,13 +10,15 @@ class Widgets {
   }
 
   static areYouSureDialogBox(
-      {required BuildContext context, required Function() onSuccess}) {
+      {required BuildContext context,
+      required Function() onSuccess,
+      required String keyword}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog.adaptive(
           title: const Text("Are You sure?"),
-          content: const Text("Are you sure want to delete?"),
+          content: Text("Are you sure want to $keyword?"),
           actions: [
             ElevatedButton(onPressed: onSuccess, child: const Text("OK")),
             TextButton(

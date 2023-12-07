@@ -37,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
               controller: emailController,
@@ -102,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextSpan(
                       text: isLogin ? "Sign Up" : "Login",
                       style: const TextStyle(
-                          fontSize: 18, color: Colors.deepPurple),
+                          fontSize: 18, color: Colors.deepOrange),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           setState(() {

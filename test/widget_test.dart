@@ -7,24 +7,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:global_nodes_assignment/apis/shared_preferences.dart';
 import 'package:global_nodes_assignment/main.dart';
+import 'package:global_nodes_assignment/screens/login_signup.dart';
+import 'package:global_nodes_assignment/screens/todo_list.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    print("Hello");
+    SharedPreferences.setMockInitialValues({}); //set values here
+    SharedPreferences pref = await SharedPreferences.getInstance();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    bool isLoggedIn = await SharedPref.getLoginStatus();
+    print(isLoggedIn);
+    SharedPref.setLoginStatus();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    if (!isLoggedIn) {
+      await tester.pumpWidget(const MyApp());
+      var fab = find.byType(FloatingActionButton);
+
+      //Assert - Check that button widget is present
+      expect(fab, findsOneWidget);
+      expect(
+        find.byWidget(const LoginScreen(isLogin: true), skipOffstage: false),
+        const LoginScreen(isLogin: true),
+      );
+    } else {
+      expect(find.byWidget(const TodoListScreen()), const TodoListScreen());
+    }
   });
 }

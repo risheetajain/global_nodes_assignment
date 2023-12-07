@@ -4,13 +4,11 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+I have made todo app where we can add ,delete,edit the task and get lists of all tasks either they are completed or pending.
 
-A few resources to get you started if this is your first Flutter project:
+IF I talked about technical part I have used firebase as our database, provider for managing state,shared_preferences for local storage.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+There will be login and logout features also
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+flutter version : 3.13.5
+command to run the project flutter run
