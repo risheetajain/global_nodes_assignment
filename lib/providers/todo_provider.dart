@@ -9,7 +9,7 @@ class TodoProvider with ChangeNotifier {
     return _allTodoList;
   }
 
-  final List<TodoModel> _allTodoList = [];
+  List<TodoModel> _allTodoList = [];
 
   addTodo({required String taskname, required String taskDescription}) {
     var uuid = const Uuid();
@@ -55,6 +55,11 @@ class TodoProvider with ChangeNotifier {
           .add(TodoModel.fromJson(element.data() as Map<String, dynamic>));
     }
 
+    notifyListeners();
+  }
+
+  clearProviderData() {
+    _allTodoList = [];
     notifyListeners();
   }
 }

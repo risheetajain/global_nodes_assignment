@@ -2,11 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 
 import '../apis/firebase_auth_api.dart';
 import '../apis/shared_preferences.dart';
 import '../constants/decoration.dart';
+import '../providers/todo_provider.dart';
 import '../routes/routes_constant.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -84,6 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       SharedPref.setLoginStatus();
                       Navigator.of(context)
                           .pushReplacementNamed(RoutesConstant.todoListScreen);
+                      Provider.of<TodoProvider>(context, listen: false)
+                          .getListofTodo();
                     }
                   });
                 },

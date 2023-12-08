@@ -52,6 +52,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                             context, RoutesConstant.splashScreen, (route) {
                           return false;
                         });
+                        myToDoProvider.clearProviderData();
                       },
                       keyword: "Logout");
                 },
