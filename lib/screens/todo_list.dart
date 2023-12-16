@@ -21,9 +21,12 @@ class _TodoListScreenState extends State<TodoListScreen> {
   final TextEditingController nameCont = TextEditingController();
   final TextEditingController descCont = TextEditingController();
   String filteroptions = "all";
+  List tobeDeleted = [];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
+    print(isKeyboardOpen);
     return Consumer<TodoProvider>(builder: (context, myToDoProvider, child) {
       List providerTodoListFilter = myToDoProvider.allTodoList.where((todo) {
         switch (filteroptions) {
@@ -38,6 +41,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
         }
       }).toList();
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text("Todo List"),
           actions: [
@@ -77,6 +81,14 @@ class _TodoListScreenState extends State<TodoListScreen> {
                       filteroptions = val.toString();
                     });
                   }),
+              if (tobeDeleted.isNotEmpty)
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("${tobeDeleted.length} Selected "),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.delete))
+                  ],
+                ),
               Expanded(
                 child: providerTodoListFilter.isEmpty
                     ? Column(
@@ -110,6 +122,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
                                           ? TextDecoration.lineThrough
                                           : null),
                             ),
+                            onLongPress: () {
+                              setState(() {
+                                tobeDeleted.add(myTodo);
+                              });
+                            },
                             leading: Checkbox(
                                 value:
                                     myTodo.status == TaskStatus.completed.name,
@@ -189,12 +206,16 @@ class _TodoListScreenState extends State<TodoListScreen> {
       int? index,
       TodoModel? myTodo,
       required TodoProvider myToDoProvider}) {
+    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
     showModalBottomSheet(
         context: context,
+        isScrollControlled: true,
         builder: (context) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -241,7 +262,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                       nameCont.clear();
                       descCont.clear();
                       Navigator.pop(context);
-                    })
+                    }),
               ],
             ),
           );
