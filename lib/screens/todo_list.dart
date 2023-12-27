@@ -206,14 +206,17 @@ class _TodoListScreenState extends State<TodoListScreen> {
       int? index,
       TodoModel? myTodo,
       required TodoProvider myToDoProvider}) {
-    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
+    final bottomInsets = MediaQuery.of(context).viewInsets.bottom;
+    final isKeyboardOpen = bottomInsets != 0;
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         builder: (context) {
           return Padding(
             padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
+              top:20,
+                // bottom: MediaQuery.of(context).viewInsets.bottom
+                ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
